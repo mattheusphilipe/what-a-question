@@ -10,6 +10,10 @@ server.use(express.static('public'));
 
 server.set('views', path.join(__dirname, 'views'));
 
+//Middleware, intermediário para tratar dados para rota dentro da aplicação
+//Middleware está entre a rota e o destino dela (método)
+server.use(express.urlencoded({extended: true}));
+
 server.use(routes);
 
 server.listen(3000, function() { console.log('running server') });
