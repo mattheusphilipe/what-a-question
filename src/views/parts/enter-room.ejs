@@ -1,18 +1,18 @@
 <section>
     <h2>Entre como participante</h2>
-    <form action="">
+    <form action="/enterroom" method="POST">
         <!-- sr-only para ficar escondendo o label na tela -->
         <label class="sr-only" for="room-id">Código da sala</label>
         <input
             id="room-id"
             type="number"
+            name="roomId"
             placeholder="Código da sala"
         />
-        <button> 
+        <button type="submit"> 
             <img src="images/enter-room.svg" alt="Entra na sala ícone" />
-            Entrar na sala
-            </button>
-
+                Entrar na sala
+        </button>
     </form>
 </section>
 <div class="separator">

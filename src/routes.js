@@ -8,17 +8,17 @@ routes.get('/', function(req, res) {
     return res.render("index", {page: 'enter-room'});
 });
 
-
-routes.get('/room/:roomId', function(req, res) {
-    return res.render("room");
-});
-
 routes.get('/create-pass', function(req, res) {
     return res.render("index", {page: 'create-pass'});
 });
 
-// falando que o ":nomevar" é um espaço que não sei o valor, vai ser umv var.
-routes.post('/question/:room/:question/:action', questionController.index);
+routes.get('/room/:roomId', roomControler.open);
 routes.post('/create-room', roomControler.create);
+routes.post('/enterroom', roomControler.enter);
+
+// falando que o ":nomevar" é um espaço que não sei o valor, vai ser umv var.
+routes.post('/question/create/:room', questionController.create);
+routes.post('/question/:room/:question/:action', questionController.index);
+
 
 module.exports = routes;

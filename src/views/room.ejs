@@ -29,11 +29,11 @@
                
                 <div class="buttons">
                     <!--data-id passar dados para o JS de forma fácil-->
-                    <div class="button outlined" id="room-id" data-id="323232" >
-                        #323243
+                    <div class="button outlined" id="room-id" data-id="<%= roomId %>" >
+                        #<%= roomId %>
                         <img src="/images/copy.svg"alt="Copiar número da sala" />
                     </div>
-                    <a href="#" class="button">
+                    <a href="/create-pass" class="button">
                         <img src="/images/users-white.svg" alt="Criar uma sala">
                         Criar sala
                     </a>
@@ -44,14 +44,12 @@
             <main>
                 <section id="question-form">
                     <h2>Faça sua pergunta</h2>
-                    <form action="">
+                    <form action="/question/create/<%= roomId %>" method="POST">
                         <label for="question" class="sr-only">O que você quer perguntar?</label>
                         <textarea
                          placeholder="O que você quer perguntar?" 
                          name="question"
-                         id="question" >
-
-                        </textarea>
+                         id="question" ></textarea>
                         <footer>
                             <div>
                                 <img src="/images/lock_black.svg" alt="ícone cadeado" />
@@ -66,85 +64,58 @@
                 <section id="questions">
                     <h2 class="sr-only">Perguntas da comunidade</h2>
                     <div class="questions">
-                        <div class="question-wrapper">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/avatar.svg" alt="Avatar usuário" />
+
+                        <% if (!isQuestions) { %>
+                            <%- include('parts/no-questions') %>
+                        <% } %>
+                        
+                        <% questions.forEach(question => {  %>
+                            <div class="question-wrapper">
+                                <div class="question-content">
+                                    <div class="user">
+                                        <img src="/images/avatar.svg" alt="Avatar usuário" />
+                                    </div>
+                                    <div class="question">
+                                        <p>
+                                            <%= question.title %>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="question">
-                                    <p>
-                                        Qual a diferença entre const, var e let no JavaScript?
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="check" data-id="1" >
-                                    <img src="/images/check.svg" alt="Marcar como lido" />
-                                    Marcar como lido
-                                </a>
-                                <a href="#" class="delete" data-id="1" >
-                                    <img src="/images/trash.svg" alt="Excluir" />
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
-                        <div class="question-wrapper read">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/avatar.svg" alt="Avatar usuário" />
-                                </div>
-                                <div class="question">
-                                    <p>
-                                        O que é JavaScript?
-                                    </p>
+                                <div class="actions">
+                                    <a href="#" class="check" data-id="3">
+                                        <img src="/images/check.svg" alt="Marcar como lido" />
+                                        Marcar como lido
+                                    </a>
+                                    <a href="#" class="delete" data-id="<%= question.id %>" >
+                                        <img src="/images/trash.svg" alt="Excluir" />
+                                        Excluir
+                                    </a>
                                 </div>
                             </div>
-                            <div class="actions">
-             
-                                <a href="#" class="delete" data-id="2" >
-                                    <img src="/images/trash.svg" alt="Excluir" />
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
-                        <div class="question-wrapper">
-                            <div class="question-content">
-                                <div class="user">
-                                    <img src="/images/avatar.svg" alt="Avatar usuário" />
+                        <%  });  %>
+
+                                              
+                        <% questionsRead.forEach(question => {  %>
+                            <div class="question-wrapper read">
+                                <div class="question-content">
+                                    <div class="user">
+                                        <img src="/images/avatar.svg" alt="Avatar usuário" />
+                                    </div>
+                                    <div class="question">
+                                        <p>
+                                            <%= question.title %>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="question">
-                                    <p>
-                                        O que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                        o que é Typescript?
-                                    </p>
+                                <div class="actions">
+                                    <a href="#" class="delete" data-id="<%= question.id %>" >
+                                        <img src="/images/trash.svg" alt="Excluir" />
+                                        Excluir
+                                    </a>
                                 </div>
                             </div>
-                            <div class="actions">
-                                <a href="#" class="check" data-id="3">
-                                    <img src="/images/check.svg" alt="Marcar como lido" />
-                                    Marcar como lido
-                                </a>
-                                <a href="#" class="delete" data-id="3">
-                                    <img src="/images/trash.svg" alt="Excluir" />
-                                    Excluir
-                                </a>
-                            </div>
-                        </div>
+                        <%  });  %>
+
                     </div>
                 </section>
             </main>

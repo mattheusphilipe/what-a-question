@@ -40,8 +40,6 @@ function handleClick(event, check = true) {
 
     const formData = document.querySelector(".modal form");
     formData.setAttribute("action", `/question/${roomId}/${questionId}/${slug}`);
-    formData.addEventListener("submit", event => event);
-    
 
     modalTitle.innerHTML = check ? "Marcar como lida" : "Exluir Pergunta";
 
